@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            max-width: 90%;
+            width: 200px;
+            text-align: center;
+        }
+
+        .notification-content {
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #721c24;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .notification.active {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .notification {
+                width: 90%;
+                max-width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span class="close-btn" onclick="hideNotification()">&times;</span>
+            <p>This is a notification message!</p>
+        </div>
+    </div>
+    <button onclick="showNotification()">Show Notification</button>
+
+    <script>
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('active');
+
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
